@@ -349,7 +349,7 @@ def preprocessing(client_data : ClientData):
             pass
         
     mediane=pd.read_csv('mediane.csv').drop(['Unnamed: 0','index'],1)
-    for col in df.columns.drop(['Unnamed: 0','index'],1):
+    for col in df.columns.drop(['Unnamed0','index'],1):
         df[col]=df[col].fillna(mediane[col][0])
     
     return df
