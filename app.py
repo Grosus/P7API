@@ -30,7 +30,8 @@ def prepro(data: ClientData):
     df=preprocessing(data)
     with open('column.npy', 'rb') as f:
         cols=np.load(f,allow_pickle=True)
-    df=df[cols,'SK_ID_CURR']
+    cols.append('SK_ID_CURR')
+    df=df[cols]
 
     return df.to_dict(orient='index')
     
