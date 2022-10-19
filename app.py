@@ -32,7 +32,7 @@ def prepro(data: ClientData):
     df=preprocessing(data)
     df=df[cols]  
     return {
-        df.to_json()
+        df.to_dict()
     }
 
 
