@@ -28,6 +28,9 @@ def predict(data: ClientData):
 def prepro(data: ClientData):
     data=data.dict()
     df=preprocessing(data)
+    with open('column.npy', 'rb') as f:
+        cols=np.load(f,allow_pickle=True)
+    df=df[cols+'SK_ID_CURR']
 
     return df.to_dict(orient='index')
     
