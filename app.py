@@ -27,10 +27,7 @@ def predict(data: ClientData):
 @app.post('/prepro')
 def prepro(data: ClientData):
     data=data.dict()
-    with open('column.npy', 'rb') as f:
-        cols=np.load(f,allow_pickle=True)
     df=preprocessing(data)
-    df=df[cols]
 
     return df.to_dict(orient='index')
     
