@@ -24,6 +24,17 @@ def predict(data: ClientData):
         'probability': probability
     }
 
+@app.post('/prepro')
+def prepro(data: ClientData):
+    data=data.dict()
+    with open('column.npy', 'rb') as f:
+        cols=np.load(f,allow_pickle=True)
+    df=preprocessing(data)
+    df=df[cols]  
+    return {
+        df.to_json()
+    }
+
 
 # 4. Run the API with uvicorn
 #    Will run on http://127.0.0.1:8000
