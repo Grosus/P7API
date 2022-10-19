@@ -30,10 +30,10 @@ def prepro(data: ClientData):
     with open('column.npy', 'rb') as f:
         cols=np.load(f,allow_pickle=True)
     df=preprocessing(data)
-    df=df[cols]  
-    return {
-        df.to_dict(orient='index')
-    }
+    df=df[cols]
+
+    return df.to_dict(orient='index')
+    
 
 
 # 4. Run the API with uvicorn
