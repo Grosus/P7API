@@ -20,7 +20,8 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 # 2. Class which describes a single flower measurements
 class ClientData(BaseModel):
-    application : str
+    application_train : str
+    application_test  : str
     bureau : str
     bureau_balance  : str
     previous_application  : str
@@ -86,6 +87,8 @@ def one_hot_encoder(df,ohcol,newohcol,i, nan_as_category = True, stack = True):
 def application_train_test(client_data,ohcol,newohcol, nan_as_category = False):
     # Read data and merge
     df = pd.read_json(client_data['application'])
+    test_df = pd.read_json(client_data['application_test'])
+    df = df.append(test_df).reset_index()
     # Optional: Remove 4 applications with XNA CODE_GENDER (train set)
     df = df[df['CODE_GENDER'] != 'XNA']
     
